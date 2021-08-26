@@ -1,0 +1,10 @@
+black
+coverage
+Django==3.2.3
+django-environ
+django-prometheus
+environ
+flake8
+flake8-gl-codeclimate
+pip-tools
+whitenoise

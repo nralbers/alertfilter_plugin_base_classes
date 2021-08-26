@@ -1,0 +1,59 @@
+stages:
+  - test
+  - build
+
+check_quality:
+  image: python:3.9
+  stage: test
+  before_script:
+    - python --version
+  script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip
+    - pip install black flake8 flake8-gl-codeclimate
+    - python -m black --check .
+    - black_result=$?
+    - python -m flake8 --exit-zero --format gl-codeclimate --output-file gl-code-quality-report.json .
+    - flake8_result=$?
+    - exit $(($black_result + $flake8_result))
+  allow_failure: false
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+    paths: [ gl-code-quality-report.json ]
+
+unittest:
+  image: python:3.9
+  stage: test
+  before_script:
+    - python --version
+  script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip
+    - pip install -r dev-requirements.txt
+    - coverage run --rcfile=.coveragerc manage.py test --settings=django_app.settings
+    - coverage report --rcfile=.coveragerc --fail-under=95 --skip-empty -m
+  coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
+  artifacts:
+    when: always
+    paths:
+      - prom_build_info.json
+      - TEST-*.xml
+    reports:
+      junit: TEST-*.xml
+
+package:
+  image: python:3.9
+  stage: build
+  before_script:
+    - python --version
+  script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip
+    - pip install --upgrade build
+    - pip install --upgrade twine
+    - python -m build
+    - python -m twine upload dist/*

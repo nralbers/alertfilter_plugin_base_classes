@@ -1,0 +1,4 @@
+[flake8]
+extend_exclude =
+    venv/,
+max_line_length=100

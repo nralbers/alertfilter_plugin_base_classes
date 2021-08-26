@@ -1,0 +1,48 @@
+{
+  "receiver": "ticketApplication",
+  "status": "firing",
+  "alerts": [
+    {
+      "annotations": {
+        "description": "SystemD service crashed\n  VALUE = 1\n  LABELS: map[__name__:node_systemd_unit_state contract_id:sap_prd_housing_en_systeembeheer instance:ba22-0004.sap.im.vdc.ordina.nl:9100 job:SAP Nexo Productie name:mnt-resource-swapfile2.swap production:true state:failed team_id:cms_support]",
+        "summary": "Host SystemD service crashed (ba22-0004.sap.im.vdc.ordina.nl:9100)"
+      },
+      "endsAt": "2021-06-02T13:06:56.759Z",
+      "fingerprint": "879bff7845f34688",
+      "receivers": [
+        {
+          "name": "ticketApplication"
+        }
+      ],
+      "startsAt": "2021-06-01T08:59:56.759Z",
+      "status": "firing",
+      "updatedAt": "2021-06-02T13:02:56.779Z",
+      "generatorURL": "http://prometheus.monitoring.ordina.nl/graph?g0.expr=node_systemd_unit_state%7Bcontract_id%3D%22sap_prd_housing_en_systeembeheer%22%2Cstate%3D%22failed%22%7D+%3D%3D+1\u0026g0.tab=1",
+      "labels": {
+        "alertname": "HostSystemdServiceCrashed",
+        "contract_id": "SLA_contract",
+        "instance": "ba22-0004.sap.im.vdc.ordina.nl:9100",
+        "job": "SAP Nexo Productie",
+        "name": "mnt-resource-swapfile2.swap",
+        "production": "true",
+        "prometheus": "monitoring/metrics-kube-prometheus-st-prometheus",
+        "severity": "prio2",
+        "state": "failed",
+        "team_id": "cms_support"
+      }
+    }
+  ],
+  "groupLabels": {},
+  "commonLabels": {
+    "alertname": "HostSystemdServiceCrashed",
+    "contract_id": "sap_prd_housing_en_systeembeheer",
+    "team_id": "cms_support"
+  },
+  "commonAnnotations": {
+    "description": "Test alert fired",
+    "summary": "Test Alert"
+  },
+  "externalURL": "http://niels-devbox:9093",
+  "version": "4",
+  "groupKey": "{}:{}"
+}
