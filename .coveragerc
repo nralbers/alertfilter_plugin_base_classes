@@ -6,4 +6,4 @@ omit =
     */test/*
     */tests/*
     manage.py
-
+    */django_app/*

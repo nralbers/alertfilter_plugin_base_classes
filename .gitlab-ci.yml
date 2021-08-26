@@ -34,7 +34,7 @@ unittest:
     - pip install --upgrade pip
     - pip install -r dev-requirements.txt
     - coverage run --rcfile=.coveragerc manage.py test --settings=django_app.settings
-    - coverage report --rcfile=.coveragerc --fail-under=95 --skip-empty -m
+    - coverage report --rcfile=.coveragerc --fail-under=90 --skip-empty -m
   coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
   artifacts:
     when: always
