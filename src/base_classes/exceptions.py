@@ -19,6 +19,13 @@ class HTTP400Error(Exception):
         self.message = message
 
 
+class HTTP500Error(Exception):
+    """internal server error"""
+
+    def __init__(self, message="HTTP error 500 occurred"):
+        self.message = message
+
+
 class HTTP503Error(Exception):
     """Server temporarily unavailable"""
 
