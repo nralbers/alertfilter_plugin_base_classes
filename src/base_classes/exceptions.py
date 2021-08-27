@@ -26,6 +26,20 @@ class HTTP503Error(Exception):
         self.message = message
 
 
+class ExternalServiceUnavailable(Exception):
+    """Wasn't able to make connection to external resource"""
+
+    def __init__(self, message="Wasn't able to make connection to external resource"):
+        self.message = message
+
+
+class BadConnectionSettingsExternalService(Exception):
+    """Wasn't able to make connection to external resource"""
+
+    def __init__(self, message="Wasn't able to make connection to external resource"):
+        self.message = message
+
+
 class InvalidFilterError(HTTP503Error):
     """Server temporarily unavailable"""
 
