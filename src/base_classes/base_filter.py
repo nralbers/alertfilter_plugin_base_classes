@@ -1,6 +1,7 @@
 import logging
 from abc import ABC, abstractmethod
 
+
 class BaseFilter(ABC):
     def __init__(self, filter_alertgroup):
         self._filter_alertgroup = filter_alertgroup
