@@ -1,8 +1,8 @@
-from django.test import TestCase, override_settings
+from unittest import TestCase
 import inspect
 
-from src.base_classes.exceptions import InvalidFilterError
-from src.base_classes.base_handler import BaseHandler
+from base_classes.exceptions import InvalidFilterError
+from base_classes.base_handler import BaseHandler
 from tests.mock_objects.mock_filters import (
     TestFilterAddOnPre,
     TestFilterDoNothing,
@@ -37,9 +37,8 @@ class TestBaseHandler(TestCase):
         )
         pass
 
-    @override_settings(PROMETHEUS_FILTERS=TEST_CHAIN)
     def testLoadFilter(self):
-        handler = BaseHandler()
+        handler = BaseHandler(TEST_CHAIN)
         self.assertIsInstance(handler._filter_chain, TestFilterAddOnPre)
         handler = handler._filter_chain
         self.assertIsInstance(handler._filter_alertgroup, TestFilterDoNothing)
@@ -50,12 +49,11 @@ class TestBaseHandler(TestCase):
         handler = handler._filter_alertgroup
         self.assertTrue(inspect.ismethod(handler._filter_alertgroup))
 
-    @override_settings(PROMETHEUS_FILTERS=TEST_CHAIN)
     def testRunFilterChain(self):
         key = "key"
         value = "value"
         test_data = {key: value}
-        handler = BaseHandler()
+        handler = BaseHandler(TEST_CHAIN)
         result = handler(test_data)
         self.assertEqual(len(result), 2)
         self.assertTrue(key in result)
@@ -63,7 +61,6 @@ class TestBaseHandler(TestCase):
         self.assertTrue(POSTACTIONKEY in result)
         self.assertEqual(result.get(POSTACTIONKEY), POSTACTIONVALUE)
 
-    @override_settings(PROMETHEUS_FILTERS=FAULTY_TEST_CHAIN)
     def testFaultyFilterChain(self):
         with self.assertRaises(InvalidFilterError):
-            BaseHandler()
+            BaseHandler(FAULTY_TEST_CHAIN)

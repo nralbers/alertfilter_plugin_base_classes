@@ -1,5 +1,5 @@
-from src.base_classes.base_filter import BaseFilter
-from src.base_classes.exceptions import HTTP400Error, HTTP503Error, SilenceEvent
+from base_classes.base_filter import BaseFilter
+from base_classes.exceptions import HTTP400Error, HTTP503Error, SilenceEvent
 from tests.mock_objects.mock_exception import MockException
 
 PREACTIONKEY = "preaction"

@@ -5,5 +5,3 @@ omit =
     */distutils/*
     */test/*
     */tests/*
-    manage.py
-    */django_app/*

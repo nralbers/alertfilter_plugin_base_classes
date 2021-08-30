@@ -1,9 +1,6 @@
 import logging
 from abc import ABC, abstractmethod
 
-from django.conf import settings
-
-
 class BaseFilter(ABC):
     def __init__(self, filter_alertgroup):
         self._filter_alertgroup = filter_alertgroup

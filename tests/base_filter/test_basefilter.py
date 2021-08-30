@@ -1,6 +1,6 @@
-from django.test import TestCase
+from unittest import TestCase
 
-from src.base_classes.base_filter import BaseFilter
+from base_classes.base_filter import BaseFilter
 from tests.mock_objects import mock_filters
 from tests.alerts.valid_alert_group import get_valid_alertgroup
 
