@@ -3,3 +3,4 @@ coverage
 flake8
 flake8-gl-codeclimate
 pip-tools
+structlog

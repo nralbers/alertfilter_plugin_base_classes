@@ -1,11 +1,11 @@
-import logging
+import structlog
 from abc import ABC, abstractmethod
 
 
 class BaseFilter(ABC):
     def __init__(self, filter_alertgroup):
         self._filter_alertgroup = filter_alertgroup
-        self.logger = logging.getLogger(__name__)
+        self.logger = structlog.getLogger(__name__)
         self.logger.debug(f"{self.__class__.__name__} created")
         # One-time configuration and initialization.
 
